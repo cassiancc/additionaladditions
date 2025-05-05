@@ -13,9 +13,9 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.*;
 
 public class AdditionalMusicDiscs {
-    public static final ResourceLocation IDENTIFIER_0308 = ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "0308");
-    public static final ResourceLocation IDENTIFIER_1007 = ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "1007");
-    public static final ResourceLocation IDENTIFIER_1507 = ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "1507");
+    public static final ResourceLocation IDENTIFIER_0308 = ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "0308");
+    public static final ResourceLocation IDENTIFIER_1007 = ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "1007");
+    public static final ResourceLocation IDENTIFIER_1507 = ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "1507");
 
     public static final SoundEvent SOUND_EVENT_0308 = SoundEvent.createVariableRangeEvent(IDENTIFIER_0308);
     public static final SoundEvent SOUND_EVENT_1007 = SoundEvent.createVariableRangeEvent(IDENTIFIER_1007);
@@ -36,9 +36,9 @@ public class AdditionalMusicDiscs {
     }
 
     private static void registerDiscs() {
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "music_disc_0308"), MUSIC_DISC_0308);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "music_disc_1007"), MUSIC_DISC_1007);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "music_disc_1507"), MUSIC_DISC_1507);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "music_disc_0308"), MUSIC_DISC_0308);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "music_disc_1007"), MUSIC_DISC_1007);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "music_disc_1507"), MUSIC_DISC_1507);
 
         CreativeAdder.TOOLS_AND_UTILITIES.add(() -> Config.getBool(ConfigValues.MUSIC_DISCS), Items.MUSIC_DISC_WAIT, MUSIC_DISC_0308, MUSIC_DISC_1007, MUSIC_DISC_1507);
     }

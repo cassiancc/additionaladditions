@@ -76,10 +76,10 @@ public class WrenchItem extends Item {
                      * This replaces the block entity, which fixes that.
                      */
                     HopperBlockEntity hopperBlockEntity = (HopperBlockEntity) world.getBlockEntity(pos);
-                    CompoundTag nbt = hopperBlockEntity.saveWithoutMetadata();
+                    CompoundTag nbt = hopperBlockEntity.saveWithoutMetadata(world.registryAccess());
                     world.removeBlockEntity(pos);
                     HopperBlockEntity blockEntity = new HopperBlockEntity(pos, newstate);
-                    blockEntity.loadCustomOnly(nbt);
+                    blockEntity.loadCustomOnly(nbt, world.registryAccess());
                     world.setBlockEntity(blockEntity);
                 }
 

@@ -3,6 +3,8 @@ package dqu.additionaladditions.mixin;
 import dqu.additionaladditions.config.Config;
 import dqu.additionaladditions.config.ConfigValues;
 import dqu.additionaladditions.registry.AdditionalPotions;
+import net.minecraft.core.Holder;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -13,23 +15,22 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PotionBrewing.class)
 public abstract class PotionBrewingMixin {
-    @Shadow
-    private static void addMix(Potion input, Item item, Potion output) {}
 
-    @Inject(method = "bootStrap", at = @At("TAIL"))
-    private static void registerPotions(CallbackInfo ci) {
+    @Inject(method = "addVanillaMixes", at = @At("TAIL"))
+    private static void registerPotions(PotionBrewing.Builder builder, CallbackInfo ci) {
         if (!Config.initialized) {
             Config.load();
         }
 
         if (!Config.getBool(ConfigValues.HASTE_POTIONS)) return;
-        addMix(Potions.SWIFTNESS.value(), Items.AMETHYST_SHARD, AdditionalPotions.HASTE_POTION);
-        addMix(AdditionalPotions.HASTE_POTION, Items.REDSTONE, AdditionalPotions.LONG_HASTE_POTION);
-        addMix(AdditionalPotions.HASTE_POTION, Items.GLOWSTONE_DUST, AdditionalPotions.STRONG_HASTE_POTION);
-        addMix(Potions.STRONG_SWIFTNESS.value(), Items.AMETHYST_SHARD, AdditionalPotions.STRONG_HASTE_POTION);
-        addMix(Potions.LONG_SWIFTNESS.value(), Items.AMETHYST_SHARD, AdditionalPotions.LONG_HASTE_POTION);
+        builder.addMix(Potions.SWIFTNESS, Items.AMETHYST_SHARD, Holder.direct(AdditionalPotions.HASTE_POTION));
+        builder.addMix(Holder.direct(AdditionalPotions.HASTE_POTION), Items.REDSTONE, Holder.direct(AdditionalPotions.LONG_HASTE_POTION));
+        builder.addMix(Holder.direct(AdditionalPotions.HASTE_POTION), Items.GLOWSTONE_DUST, Holder.direct(AdditionalPotions.STRONG_HASTE_POTION));
+        builder.addMix(Potions.STRONG_SWIFTNESS, Items.AMETHYST_SHARD, Holder.direct(AdditionalPotions.STRONG_HASTE_POTION));
+        builder.addMix(Potions.LONG_SWIFTNESS, Items.AMETHYST_SHARD, Holder.direct(AdditionalPotions.LONG_HASTE_POTION));
     }
 }

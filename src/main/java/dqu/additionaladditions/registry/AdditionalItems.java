@@ -7,6 +7,7 @@ import dqu.additionaladditions.item.*;
 import dqu.additionaladditions.misc.CreativeAdder;
 import dqu.additionaladditions.misc.LootHandler;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.dispenser.BlockSource;
@@ -25,7 +26,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithEnchantedBonusCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
@@ -58,23 +59,23 @@ public class AdditionalItems {
     public static final Item ROSE_GOLD_ALLOY = new Item(new Item.Properties());
 
     private static void registerItems() {
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "watering_can"), WATERING_CAN);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "wrench"), WRENCH_ITEM);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "crossbow_with_spyglass"), CROSSBOW_WITH_SPYGLASS);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "trident_shard"), TRIDENT_SHARD);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "glow_stick"), GLOW_STICK_ITEM);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "depth_meter"), DEPTH_METER_ITEM);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "mysterious_bundle"), MYSTERIOUS_BUNDLE_ITEM);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "pocket_jukebox"), POCKET_JUKEBOX_ITEM);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "gold_ring"), GOLD_RING);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "rose_gold_alloy"), ROSE_GOLD_ALLOY);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "watering_can"), WATERING_CAN);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "wrench"), WRENCH_ITEM);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "crossbow_with_spyglass"), CROSSBOW_WITH_SPYGLASS);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "trident_shard"), TRIDENT_SHARD);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "glow_stick"), GLOW_STICK_ITEM);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "depth_meter"), DEPTH_METER_ITEM);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "mysterious_bundle"), MYSTERIOUS_BUNDLE_ITEM);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "pocket_jukebox"), POCKET_JUKEBOX_ITEM);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "gold_ring"), GOLD_RING);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "rose_gold_alloy"), ROSE_GOLD_ALLOY);
     }
 
     private static void registerFoods() {
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "berry_pie"), BERRY_PIE);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "fried_egg"), FRIED_EGG);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "honeyed_apple"), HONEYED_APPLE);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "chicken_nugget"), CHICKEN_NUGGET);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "berry_pie"), BERRY_PIE);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "fried_egg"), FRIED_EGG);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "honeyed_apple"), HONEYED_APPLE);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "chicken_nugget"), CHICKEN_NUGGET);
     }
 
     private static void registerLootTables() {
@@ -108,7 +109,7 @@ public class AdditionalItems {
         LootHandler.register(List.of(EntityType.ZOMBIE.getDefaultLootTable(), EntityType.CREEPER.getDefaultLootTable()), () -> Config.getBool(ConfigValues.CHICKEN_NUGGET), LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
                 .when(LootItemKilledByPlayerCondition.killedByPlayer())
-                .when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.025f, 0.01f))
+                .when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(Minecraft.getInstance().level.registryAccess(), 0.025f, 0.01f))
                 .add(LootItem.lootTableItem(CHICKEN_NUGGET))
         );
         LootHandler.register(BuiltInLootTables.PIGLIN_BARTERING, () -> Config.getBool(ConfigValues.GILDED_NETHERITE, "enabled"), LootPool.lootPool()

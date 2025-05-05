@@ -15,12 +15,13 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(CrossbowItem.class)
 public class CrossbowItemMixin {
-    @ModifyVariable(method = "performShooting", at = @At("HEAD"), index = 5, argsOnly = true)
-    private float shootAll(float original, Level world, LivingEntity entity, InteractionHand hand, ItemStack stack, float speed, float divergence) {
-        if (!Config.getBool(ConfigValues.ENCHANTMENT_PRECISION)) return original;
-        int level = EnchantmentHelper.getItemEnchantmentLevel(AdditionalEnchantments.ENCHANTMENT_PRECISION, stack);
-        if (level <= 0) return original;
-        float precision = (float) ( (level * 3) * 0.1 );
-        return original - precision;
-    }
+    // TODO data-driven enchantments
+//    @ModifyVariable(method = "performShooting", at = @At("HEAD"), index = 5, argsOnly = true)
+//    private float shootAll(float original, Level world, LivingEntity entity, InteractionHand hand, ItemStack stack, float speed, float divergence) {
+//        if (!Config.getBool(ConfigValues.ENCHANTMENT_PRECISION)) return original;
+//        int level = EnchantmentHelper.getItemEnchantmentLevel(AdditionalEnchantments.ENCHANTMENT_PRECISION, stack);
+//        if (level <= 0) return original;
+//        float precision = (float) ( (level * 3) * 0.1 );
+//        return original - precision;
+//    }
 }

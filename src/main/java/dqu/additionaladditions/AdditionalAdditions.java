@@ -8,7 +8,7 @@ import dqu.additionaladditions.misc.LootHandler;
 import dqu.additionaladditions.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.packs.PackType;
@@ -17,8 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AdditionalAdditions implements ModInitializer {
-    public static final String namespace = "additionaladditions";
-    public static final Logger LOGGER = LoggerFactory.getLogger(namespace);
+    public static final String NAMESPACE = "additionaladditions";
+    public static final Logger LOGGER = LoggerFactory.getLogger(NAMESPACE);
     public static boolean zoom = false;
 
     @Override
@@ -39,9 +39,7 @@ public class AdditionalAdditions implements ModInitializer {
 
         addItemsToCreative();
 
-        LootTableEvents.MODIFY.register(((resourceManager, lootManager, id, table, setter) -> {
-            LootHandler.handle(id, table);
-        }));
+        LootTableEvents.MODIFY.register(LootHandler::handle);
 
         LootHandler.postInit();
 

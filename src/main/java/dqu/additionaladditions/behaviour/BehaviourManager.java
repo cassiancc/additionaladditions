@@ -40,7 +40,7 @@ public class BehaviourManager extends SimpleJsonResourceReloadListener implement
             Map.Entry entry = (Map.Entry) iterator.next();
             ResourceLocation resourceLocation = (ResourceLocation) entry.getKey();
 
-            if (!resourceLocation.getNamespace().equals(AdditionalAdditions.namespace)) {
+            if (!resourceLocation.getNamespace().equals(AdditionalAdditions.NAMESPACE)) {
                 continue;
             }
 
@@ -51,7 +51,7 @@ public class BehaviourManager extends SimpleJsonResourceReloadListener implement
         }
 
         this.behaviours = ImmutableMap.copyOf(hashMap);
-        AdditionalAdditions.LOGGER.info("[{}] Loaded {} behaviours", AdditionalAdditions.namespace, this.behaviours.size());
+        AdditionalAdditions.LOGGER.info("[{}] Loaded {} behaviours", AdditionalAdditions.NAMESPACE, this.behaviours.size());
         loads++;
     }
 
@@ -68,16 +68,16 @@ public class BehaviourManager extends SimpleJsonResourceReloadListener implement
                     case BOOLEAN -> properties.add(new ConfigProperty(key, new BooleanConfigValue(value.getAsBoolean())));
                     case INTEGER -> properties.add(new ConfigProperty(key, new IntegerConfigValue(value.getAsInt())));
                     case FLOAT -> properties.add(new ConfigProperty(key, new FloatConfigValue(value.getAsFloat())));
-                    default -> AdditionalAdditions.LOGGER.warn("[{}] Incorrect property: {} in behaviour {}. This shouldn't happen, please report.", AdditionalAdditions.namespace, key, resourceLocation.getPath());
+                    default -> AdditionalAdditions.LOGGER.warn("[{}] Incorrect property: {} in behaviour {}. This shouldn't happen, please report.", AdditionalAdditions.NAMESPACE, key, resourceLocation.getPath());
                 }
-            }, () -> AdditionalAdditions.LOGGER.warn("[{}] Unknown property: {} in behaviour {}.", AdditionalAdditions.namespace, key, resourceLocation.getPath()));
+            }, () -> AdditionalAdditions.LOGGER.warn("[{}] Unknown property: {} in behaviour {}.", AdditionalAdditions.NAMESPACE, key, resourceLocation.getPath()));
         }
 
         return properties;
     }
 
     public ConfigProperty getBehaviour(String name) {
-        return this.behaviours.get(ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, name));
+        return this.behaviours.get(ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, name));
     }
 
     public <T> T getBehaviourValue(String name, BehaviourValues values) {
@@ -98,7 +98,7 @@ public class BehaviourManager extends SimpleJsonResourceReloadListener implement
 
     @Override
     public ResourceLocation getFabricId() {
-        return ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "behaviour");
+        return ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "behaviour");
     }
 
     static {

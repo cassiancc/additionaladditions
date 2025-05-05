@@ -39,25 +39,25 @@ public class AdditionalBlocks {
     public static final PatinaBlock PATINA_BLOCK = new PatinaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN).pushReaction(PushReaction.NORMAL).sound(SoundType.ROOTED_DIRT).strength(0.5f));
 
     public static PoiType AMETHYST_LAMP_POI;
-    public static ResourceLocation AMETHYST_LAMP_POI_RL = ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "amethyst_lamp_poi");
+    public static ResourceLocation AMETHYST_LAMP_POI_RL = ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "amethyst_lamp_poi");
 
     public static void registerAll() {
-        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "glow_stick"), GLOW_STICK_BLOCK);
+        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "glow_stick"), GLOW_STICK_BLOCK);
 
-        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "copper_patina"), COPPER_PATINA);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "copper_patina"),
+        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "copper_patina"), COPPER_PATINA);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "copper_patina"),
                 new CopperPatinaItem(COPPER_PATINA, new Item.Properties()));
 
-        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "rope"), ROPE_BLOCK);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "rope"),
+        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "rope"), ROPE_BLOCK);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "rope"),
                 new BlockItem(ROPE_BLOCK, new Item.Properties()));
 
-        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "amethyst_lamp"), AMETHYST_LAMP);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "amethyst_lamp"),
+        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "amethyst_lamp"), AMETHYST_LAMP);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "amethyst_lamp"),
                 new BlockItem(AMETHYST_LAMP, new Item.Properties()));
 
-        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "patina_block"), PATINA_BLOCK);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "patina_block"),
+        Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "patina_block"), PATINA_BLOCK);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "patina_block"),
                 new BlockItem(PATINA_BLOCK, new Item.Properties()));
 
         AMETHYST_LAMP_POI = PointOfInterestHelper.register(

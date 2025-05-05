@@ -23,7 +23,7 @@ public class RecipeManagerMixin {
         Iterator<Map.Entry<ResourceLocation, JsonElement>> iterator = map.entrySet().iterator();
         while (iterator.hasNext()) {
             ResourceLocation identifier = iterator.next().getKey();
-            if (identifier.getNamespace().equals(AdditionalAdditions.namespace)) {
+            if (identifier.getNamespace().equals(AdditionalAdditions.NAMESPACE)) {
                 switch (identifier.getPath()) {
                     case "watering_can" -> { if (!Config.getBool(ConfigValues.WATERING_CAN)) toRemove.add(identifier); }
                     case "wrench" -> { if (!Config.getBool(ConfigValues.WRENCH)) toRemove.add(identifier); }

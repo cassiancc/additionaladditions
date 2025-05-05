@@ -28,7 +28,7 @@ public class Config {
     private static JsonObject db;
 
     private static String format(String message) {
-        return String.format("[%s] %s", AdditionalAdditions.namespace, message);
+        return String.format("[%s] %s", AdditionalAdditions.NAMESPACE, message);
     }
 
     private static void addPropertyTo(JsonObject object, ConfigProperty property) {

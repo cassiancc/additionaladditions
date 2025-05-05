@@ -18,11 +18,11 @@ public class AdditionalSmithingTemplate extends SmithingTemplateItem {
     }
 
     public static SmithingTemplateItem create(String id, List<ResourceLocation> baseSlotEmptyIcons, List<ResourceLocation> additionalSlotEmptyIcons) {
-        var appliesTo = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "smithing_template."+id+".applies_to"))).withStyle(DESCRIPTION_FORMAT);
-        var upgradeDescription = Component.translatable(Util.makeDescriptionId("upgrade", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, id))).withStyle(TITLE_FORMAT);
-        var ingredients = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "smithing_template."+id+".ingredients"))).withStyle(DESCRIPTION_FORMAT);
-        var baseSlotDescription = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "smithing_template."+id+".base_slot_description")));
-        var additionsSlotDescription = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "smithing_template."+id+".additions_slot_description")));
+        var appliesTo = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "smithing_template."+id+".applies_to"))).withStyle(DESCRIPTION_FORMAT);
+        var upgradeDescription = Component.translatable(Util.makeDescriptionId("upgrade", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, id))).withStyle(TITLE_FORMAT);
+        var ingredients = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "smithing_template."+id+".ingredients"))).withStyle(DESCRIPTION_FORMAT);
+        var baseSlotDescription = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "smithing_template."+id+".base_slot_description")));
+        var additionsSlotDescription = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "smithing_template."+id+".additions_slot_description")));
 
         return new AdditionalSmithingTemplate(
                 appliesTo,
@@ -66,8 +66,8 @@ public class AdditionalSmithingTemplate extends SmithingTemplateItem {
         DIAMOND(ResourceLocation.parse("item/empty_slot_diamond")),
         LAPIS_LAZULI(ResourceLocation.parse("item/empty_slot_lapis_lazuli")),
         AMETHYST_SHARD(ResourceLocation.parse("item/empty_slot_amethyst_shard")),
-        RING(ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "item/empty_slot_ring")),
-        ALLOY(ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "item/empty_slot_alloy"));
+        RING(ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "item/empty_slot_ring")),
+        ALLOY(ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.NAMESPACE, "item/empty_slot_alloy"));
 
         final ResourceLocation resourceLocation;
 

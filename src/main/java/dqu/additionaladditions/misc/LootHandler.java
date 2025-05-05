@@ -1,8 +1,9 @@
 package dqu.additionaladditions.misc;
 
 import dqu.additionaladditions.AdditionalAdditions;
+import net.fabricmc.fabric.api.loot.v3.LootTableSource;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 
@@ -25,12 +26,12 @@ public class LootHandler {
     }
 
     public static void postInit() {
-        AdditionalAdditions.LOGGER.info("[" + AdditionalAdditions.namespace + "] Adding " + entries.size() + " loot pools");
+        AdditionalAdditions.LOGGER.info("[" + AdditionalAdditions.NAMESPACE + "] Adding " + entries.size() + " loot pools");
     }
 
-    public static void handle(ResourceLocation id, LootTable.Builder table) {
+    public static void handle(ResourceKey<LootTable> lootTableResourceKey, LootTable.Builder table, LootTableSource source, HolderLookup.Provider provider) {
         for (LootEntry entry : entries) {
-            if (entry.table.equals(id)) {
+            if (entry.table.equals(lootTableResourceKey)) {
                 if (!entry.condition.get()) continue;
 
                 table.withPool(entry.pool);

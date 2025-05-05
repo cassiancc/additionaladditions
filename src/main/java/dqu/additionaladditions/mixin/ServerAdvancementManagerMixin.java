@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
@@ -24,7 +23,7 @@ public class ServerAdvancementManagerMixin {
         HashSet<ResourceLocation> toRemove = new HashSet<>();
         for (Map.Entry<ResourceLocation, JsonElement> resourceLocationJsonElementEntry : map.entrySet()) {
             ResourceLocation identifier = resourceLocationJsonElementEntry.getKey();
-            if (identifier.getNamespace().equals(AdditionalAdditions.namespace)) {
+            if (identifier.getNamespace().equals(AdditionalAdditions.NAMESPACE)) {
                 switch (identifier.getPath()) {
                     case "obtain_adoghr_disc" -> {
                         if (!Config.getBool(ConfigValues.MUSIC_DISCS)) toRemove.add(identifier);
