@@ -9,6 +9,7 @@ import dqu.additionaladditions.misc.CreativeAdder;
 import dqu.additionaladditions.misc.LootHandler;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
@@ -26,11 +27,11 @@ public class AdditionalMaterials {
     public static final Item ROSE_GOLD_CHESTPLATE = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties());
     public static final Item ROSE_GOLD_LEGGINGS = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties());
     public static final Item ROSE_GOLD_BOOTS = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties());
-    public static final Item ROSE_GOLD_SWORD = new SwordItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties());
-    public static final Item ROSE_GOLD_PICKAXE = new PickaxeItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties());
-    public static final Item ROSE_GOLD_AXE = new AxeItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties());
-    public static final Item ROSE_GOLD_HOE = new HoeItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties());
-    public static final Item ROSE_GOLD_SHOVEL = new ShovelItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties());
+    public static final Item ROSE_GOLD_SWORD = new SwordItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties().attributes(SwordItem.createAttributes(RoseGoldToolMaterial.MATERIAL, 4, -2.4f)));
+    public static final Item ROSE_GOLD_PICKAXE = new PickaxeItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties().attributes(PickaxeItem.createAttributes(RoseGoldToolMaterial.MATERIAL, 1, -2.8f)));
+    public static final Item ROSE_GOLD_AXE = new AxeItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties().attributes(AxeItem.createAttributes(RoseGoldToolMaterial.MATERIAL, 6, -3.1f)));
+    public static final Item ROSE_GOLD_HOE = new HoeItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties().attributes(HoeItem.createAttributes(RoseGoldToolMaterial.MATERIAL, 1.5f, -3f)));
+    public static final Item ROSE_GOLD_SHOVEL = new ShovelItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties().attributes(PickaxeItem.createAttributes(RoseGoldToolMaterial.MATERIAL, 1.5f, -3f)));
     public static final Item ROSE_GOLD_UPGRADE = AdditionalSmithingTemplate.create("rose_gold_upgrade", AdditionalSmithingTemplate.iconsEquipment(), List.of(AdditionalSmithingTemplate.SmithingIcon.ALLOY.location()));
 
     public static final Holder<ArmorMaterial> GILDED_NETHERITE_ARMOR_MATERIAL = GildedNetheriteArmorMaterial.GILDED_NETHERITE;
@@ -38,11 +39,11 @@ public class AdditionalMaterials {
     public static final Item GILDED_NETHERITE_CHESTPLATE = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant());
     public static final Item GILDED_NETHERITE_LEGGINGS = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant());
     public static final Item GILDED_NETHERITE_BOOTS = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant());
-    public static final Item GILDED_NETHERITE_SWORD = new SwordItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant());
-    public static final Item GILDED_NETHERITE_PICKAXE = new PickaxeItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant());
-    public static final Item GILDED_NETHERITE_AXE = new AxeItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant());
-    public static final Item GILDED_NETHERITE_HOE = new HoeItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant());
-    public static final Item GILDED_NETHERITE_SHOVEL = new ShovelItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant());
+    public static final Item GILDED_NETHERITE_SWORD = new SwordItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant().attributes(SwordItem.createAttributes(GildedNetheriteToolMaterial.MATERIAL, 5, -2.4f)));
+    public static final Item GILDED_NETHERITE_PICKAXE = new PickaxeItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant().attributes(PickaxeItem.createAttributes(GildedNetheriteToolMaterial.MATERIAL, 3, -2.8f)));
+    public static final Item GILDED_NETHERITE_AXE = new AxeItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant().attributes(AxeItem.createAttributes(GildedNetheriteToolMaterial.MATERIAL, 7, -3.1f)));
+    public static final Item GILDED_NETHERITE_HOE = new HoeItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant().attributes(HoeItem.createAttributes(GildedNetheriteToolMaterial.MATERIAL, 2f, -3f)));
+    public static final Item GILDED_NETHERITE_SHOVEL = new ShovelItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant().attributes(PickaxeItem.createAttributes(GildedNetheriteToolMaterial.MATERIAL, 3.5f, -3f)));
     public static final Item GILDED_NETHERITE_UPGRADE = AdditionalSmithingTemplate.create("gilded_netherite_upgrade", AdditionalSmithingTemplate.iconsEquipment(), List.of(AdditionalSmithingTemplate.SmithingIcon.RING.location()));
 
     public static void registerAll() {
