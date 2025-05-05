@@ -8,7 +8,7 @@
       "translate": "additionaladditions.advancements.obtain_gilded_netherite.desc"
     },
     "icon": {
-      "item": "additionaladditions:gilded_netherite_chestplate"
+      "id": "additionaladditions:gilded_netherite_chestplate"
     },
     "frame": "task",
     "show_toast": true,

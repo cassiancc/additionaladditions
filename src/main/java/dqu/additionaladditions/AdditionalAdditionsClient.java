@@ -43,7 +43,9 @@ public class AdditionalAdditionsClient implements ClientModInitializer {
         });
 
         FabricModelPredicateProviderRegistry.register(AdditionalItems.CROSSBOW_WITH_SPYGLASS, ResourceLocation.withDefaultNamespace("firework"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
-            return itemStack.get(DataComponents.CHARGED_PROJECTILES).contains(Items.FIREWORK_ROCKET)? 1.0F : 0.0F;
+            var contents = itemStack.get(DataComponents.CHARGED_PROJECTILES);
+            if (contents == null) return 0.0F;
+            return contents.contains(Items.FIREWORK_ROCKET)? 1.0F : 0.0F;
         });
 
         FabricModelPredicateProviderRegistry.register(AdditionalItems.POCKET_JUKEBOX_ITEM, ResourceLocation.withDefaultNamespace("disc"), ((itemStack, clientWorld, livingEntity, worldSeed) -> {

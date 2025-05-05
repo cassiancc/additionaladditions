@@ -24,8 +24,10 @@ public class PocketJukeboxItem extends Item {
     }
 
     private static ItemStack nbtGetDisc(ItemStack stack) {
-        ItemStack tag = stack.getComponents().get(DataComponents.BUNDLE_CONTENTS).getItemUnsafe(0);
-        return tag;
+        var contents = stack.getComponents().get(DataComponents.BUNDLE_CONTENTS);
+        if (contents != null && contents.size() == 1)
+            return contents.getItemUnsafe(0);
+        else return null;
     }
 
     private static void nbtRemoveDisc(ItemStack stack) {
@@ -37,8 +39,8 @@ public class PocketJukeboxItem extends Item {
         ItemStack currentDisc = nbtGetDisc(stack);
         if (currentDisc != null) return;
 
-        ItemContainerContents tag = stack.getComponents().get(DataComponents.CONTAINER);
-        tag.copyInto(NonNullList.of(disc));
+        BundleContents bundleContents = new BundleContents(List.of(disc));
+        stack.set(DataComponents.BUNDLE_CONTENTS, bundleContents);
     }
 
     public static boolean hasDisc(ItemStack stack) {
