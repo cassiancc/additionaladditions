@@ -26,10 +26,10 @@ public abstract class PotionBrewingMixin {
         }
 
         if (!Config.getBool(ConfigValues.HASTE_POTIONS)) return;
-        addMix(Potions.SWIFTNESS, Items.AMETHYST_SHARD, AdditionalPotions.HASTE_POTION);
+        addMix(Potions.SWIFTNESS.value(), Items.AMETHYST_SHARD, AdditionalPotions.HASTE_POTION);
         addMix(AdditionalPotions.HASTE_POTION, Items.REDSTONE, AdditionalPotions.LONG_HASTE_POTION);
         addMix(AdditionalPotions.HASTE_POTION, Items.GLOWSTONE_DUST, AdditionalPotions.STRONG_HASTE_POTION);
-        addMix(Potions.STRONG_SWIFTNESS, Items.AMETHYST_SHARD, AdditionalPotions.STRONG_HASTE_POTION);
-        addMix(Potions.LONG_SWIFTNESS, Items.AMETHYST_SHARD, AdditionalPotions.LONG_HASTE_POTION);
+        addMix(Potions.STRONG_SWIFTNESS.value(), Items.AMETHYST_SHARD, AdditionalPotions.STRONG_HASTE_POTION);
+        addMix(Potions.LONG_SWIFTNESS.value(), Items.AMETHYST_SHARD, AdditionalPotions.LONG_HASTE_POTION);
     }
 }

@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import dqu.additionaladditions.behaviour.BehaviourManager;
 import dqu.additionaladditions.behaviour.BehaviourValues;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -22,14 +23,14 @@ public class AdditionalHoeItem extends HoeItem {
     private final float attackSpeed;
 
     public AdditionalHoeItem(Tier material, int attackDamage, float attackSpeed, Properties settings) {
-        super(material, attackDamage, attackSpeed, settings);
+        super(material, settings);
         this.attackSpeed = attackSpeed;
     }
 
     private void rebuildModifiers() {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID , "Tool modifier", getDamage(), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID , "Tool modifier", getAttackSpeed(), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE.value(), new AttributeModifier(BASE_ATTACK_DAMAGE_ID, getDamage(), AttributeModifier.Operation.ADD_VALUE));
+        builder.put(Attributes.ATTACK_SPEED.value(), new AttributeModifier(BASE_ATTACK_SPEED_ID, getAttackSpeed(), AttributeModifier.Operation.ADD_VALUE));
         this.modifiers = builder.build();
     }
 
@@ -44,11 +45,11 @@ public class AdditionalHoeItem extends HoeItem {
         }
     }
 
-    @Override
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
-        rebuildModifiersIfNeeded();
-        return equipmentSlot == EquipmentSlot.MAINHAND ? this.modifiers : super.getDefaultAttributeModifiers(equipmentSlot);
-    }
+//    @Override
+//    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
+//        rebuildModifiersIfNeeded();
+//        return equipmentSlot == EquipmentSlot.MAINHAND ? this.modifiers : super.getDefaultAttributeModifiers();
+//    }
 
     @Override
     public float getDestroySpeed(ItemStack itemStack, BlockState blockState) {
@@ -58,7 +59,7 @@ public class AdditionalHoeItem extends HoeItem {
     public float getDamage() {
         String path = getTier().toString().toLowerCase(Locale.ROOT) + "/hoe";
         Float damage = BehaviourManager.INSTANCE.getBehaviourValue(path, BehaviourValues.ATTACK_DAMAGE);
-        return (damage == null) ? super.getAttackDamage() : damage;
+        return (damage == null) ? super.components().get(DataComponents.DAMAGE) : damage;
     }
 
     public float getAttackSpeed() {
@@ -70,6 +71,6 @@ public class AdditionalHoeItem extends HoeItem {
     public float getMiningSpeed() {
         String path = getTier().toString().toLowerCase(Locale.ROOT) + "/hoe";
         Float speed = BehaviourManager.INSTANCE.getBehaviourValue(path, BehaviourValues.MINING_SPEED);
-        return (speed == null) ? this.speed : speed;
+        return (speed == null) ? this.attackSpeed : speed;
     }
 }

@@ -42,13 +42,13 @@ public abstract class LivingEntityMixin extends Entity {
                 return;
             }
 
-            AttributeInstance entityAttributeInstance = getAttribute(Attributes.MOVEMENT_SPEED);
+            AttributeInstance entityAttributeInstance = getAttribute(Attributes.MOVEMENT_SPEED.value());
             if (entityAttributeInstance == null) {
                 return;
             }
 
             AttributeModifier modifier = new AttributeModifier(SPEED_MODIFIER_SOUL_SPEED_UUID, "Soul speed boost", (i*7d)/1000d, AttributeModifier.Operation.ADDITION);
-            if (entityAttributeInstance.hasModifier(modifier)) {
+            if (entityAttributeInstance.hasModifier(modifier.id())) {
                 return;
             }
 

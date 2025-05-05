@@ -1,8 +1,12 @@
 package dqu.additionaladditions.material;
 
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 
 public class RoseGoldToolMaterial implements Tier {
     public static final RoseGoldToolMaterial MATERIAL = new RoseGoldToolMaterial();
@@ -23,8 +27,8 @@ public class RoseGoldToolMaterial implements Tier {
     }
 
     @Override
-    public int getLevel() {
-        return 2;
+    public TagKey<Block> getIncorrectBlocksForDrops() {
+        return BlockTags.INCORRECT_FOR_GOLD_TOOL;
     }
 
     @Override

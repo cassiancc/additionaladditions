@@ -1,5 +1,7 @@
 package dqu.additionaladditions.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import dqu.additionaladditions.AdditionalAdditions;
 import dqu.additionaladditions.config.Config;
 import dqu.additionaladditions.config.ConfigValues;
@@ -21,9 +23,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class GuiMixin {
     @Shadow @Final private Minecraft minecraft;
 
-    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isScoping()Z"))
-    private boolean spyglassOverlay(LocalPlayer clientPlayerEntity) {
-        return AdditionalAdditions.zoom || clientPlayerEntity.isScoping();
+    @WrapOperation(method = "renderCameraOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isScoping()Z"))
+    private boolean spyglassOverlay(LocalPlayer instance, Operation<Boolean> original) {
+        return AdditionalAdditions.zoom || original.call(instance);
     }
 
     @Inject(method = "render", at = @At("TAIL"))

@@ -5,6 +5,7 @@ import com.google.common.collect.Multimap;
 import dqu.additionaladditions.AdditionalAdditions;
 import dqu.additionaladditions.behaviour.BehaviourManager;
 import dqu.additionaladditions.behaviour.BehaviourValues;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -19,7 +20,7 @@ public class AdditionalArmorItem extends ArmorItem {
     private Multimap<Attribute, AttributeModifier> modifiers = null;
     private int previousLoads = BehaviourManager.loads;
 
-    public AdditionalArmorItem(ArmorMaterial armorMaterial, Type type, Properties properties) {
+    public AdditionalArmorItem(Holder<ArmorMaterial> armorMaterial, Type type, Properties properties) {
         super(armorMaterial, type, properties);
         rebuildModifiers(type.getSlot());
     }
@@ -27,10 +28,10 @@ public class AdditionalArmorItem extends ArmorItem {
     private void rebuildModifiers(EquipmentSlot slot) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         UUID uuid = ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()];
-        builder.put(Attributes.ARMOR, new AttributeModifier(uuid , "Armor modifier", getDefense(), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid , "Armor toughness", getToughness(), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, getDefense(), AttributeModifier.Operation.ADD_VALUE));
+        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, getToughness(), AttributeModifier.Operation.ADD_VALUE));
         if (getKnockbackResistance() > 0) {
-            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", getKnockbackResistance(), AttributeModifier.Operation.ADDITION));
+            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, getKnockbackResistance(), AttributeModifier.Operation.ADD_VALUE));
         }
         this.modifiers = builder.build();
     }

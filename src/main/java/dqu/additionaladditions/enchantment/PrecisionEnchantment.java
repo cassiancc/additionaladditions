@@ -3,8 +3,8 @@ package dqu.additionaladditions.enchantment;
 import dqu.additionaladditions.config.Config;
 import dqu.additionaladditions.config.ConfigValues;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class PrecisionEnchantment extends Enchantment {
     public PrecisionEnchantment() {

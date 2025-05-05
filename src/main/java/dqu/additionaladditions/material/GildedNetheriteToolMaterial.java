@@ -1,8 +1,11 @@
 package dqu.additionaladditions.material;
 
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 
 public class GildedNetheriteToolMaterial implements Tier {
     public static final GildedNetheriteToolMaterial MATERIAL = new GildedNetheriteToolMaterial();
@@ -23,8 +26,8 @@ public class GildedNetheriteToolMaterial implements Tier {
     }
 
     @Override
-    public int getLevel() {
-        return 4;
+    public TagKey<Block> getIncorrectBlocksForDrops() {
+        return BlockTags.INCORRECT_FOR_NETHERITE_TOOL;
     }
 
     @Override

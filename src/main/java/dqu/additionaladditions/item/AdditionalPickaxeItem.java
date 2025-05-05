@@ -22,14 +22,14 @@ public class AdditionalPickaxeItem extends PickaxeItem {
     private final float attackSpeed;
 
     public AdditionalPickaxeItem(Tier material, int attackDamage, float attackSpeed, Properties settings) {
-        super(material, attackDamage, attackSpeed, settings);
+        super(material, settings);
         this.attackSpeed = attackSpeed;
     }
 
     private void rebuildModifiers() {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID , "Tool modifier", getDamage(), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID , "Tool modifier", getAttackSpeed(), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, getDamage(), AttributeModifier.Operation.ADD_VALUE));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, getAttackSpeed(), AttributeModifier.Operation.ADD_VALUE));
         this.modifiers = builder.build();
     }
 
@@ -70,6 +70,6 @@ public class AdditionalPickaxeItem extends PickaxeItem {
     public float getMiningSpeed() {
         String path = getTier().toString().toLowerCase(Locale.ROOT) + "/pickaxe";
         Float speed = BehaviourManager.INSTANCE.getBehaviourValue(path, BehaviourValues.MINING_SPEED);
-        return (speed == null) ? this.speed : speed;
+        return (speed == null) ? this.attackSpeed : speed;
     }
 }

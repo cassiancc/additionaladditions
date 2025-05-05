@@ -3,14 +3,16 @@ package dqu.additionaladditions.item;
 import dqu.additionaladditions.config.Config;
 import dqu.additionaladditions.config.ConfigValues;
 import dqu.additionaladditions.misc.PocketMusicSoundInstance;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.item.*;
 
 import java.util.List;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -19,10 +21,8 @@ import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.RecordItem;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
 
 public class PocketJukeboxItem extends Item {
@@ -46,12 +46,12 @@ public class PocketJukeboxItem extends Item {
         stack.setTag(tag);
     }
 
-    private static void nbtPutDisc(ItemStack stack, String disc) {
+    private static void nbtPutDisc(ItemStack stack, Holder<JukeboxSong> disc) {
         String currentDisc = nbtGetDisc(stack);
         if (currentDisc != null) return;
 
-        CompoundTag tag = stack.getOrCreateTag();
-        tag.putString("musicdisc", disc);
+        ItemContainerContents tag = stack.getComponents().get(DataComponents.CONTAINER);
+        tag =("musicdisc", disc);
         stack.setTag(tag);
     }
 
@@ -67,10 +67,9 @@ public class PocketJukeboxItem extends Item {
 
         if (nbtGetDisc(stack) == null) {
             ItemStack cursor = cursorStackReference.get();
-            if (cursor.getItem() instanceof RecordItem) {
-                ResourceLocation id = BuiltInRegistries.ITEM.getKey(cursor.getItem());
-                RecordItem discItem = (RecordItem) BuiltInRegistries.ITEM.get(id);
-                nbtPutDisc(stack, id.toString());
+            if (cursor.has(DataComponents.JUKEBOX_PLAYABLE)) {
+                var song = JukeboxSong.fromStack(world.registryAccess(), stack).get();
+                nbtPutDisc(stack, song);
                 cursorStackReference.set(ItemStack.EMPTY);
 
                 if (world.isClientSide()) {
@@ -79,7 +78,7 @@ public class PocketJukeboxItem extends Item {
                         PocketMusicSoundInstance.instance = null;
                     }
 
-                    PocketMusicSoundInstance.instance = new PocketMusicSoundInstance(discItem.getSound(), player, stack, false, 0.8f);
+                    PocketMusicSoundInstance.instance = new PocketMusicSoundInstance(song, player, stack, false, 0.8f);
                     PocketMusicSoundInstance.instance.play();
                 }
             }
@@ -89,7 +88,7 @@ public class PocketJukeboxItem extends Item {
             if (!cursor.isEmpty()) return false;
 
             String disc = nbtGetDisc(stack);
-            RecordItem discItem = (RecordItem) BuiltInRegistries.ITEM.get(new ResourceLocation(disc));
+            RecordItem discItem = (RecordItem) BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(disc));
             ItemStack discStack = new ItemStack(discItem, 1);
             cursorStackReference.set(discStack);
 
@@ -106,12 +105,12 @@ public class PocketJukeboxItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
+    public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag) {
         String disc = nbtGetDisc(stack);
         if (disc == null) {
             tooltip.add(MutableComponent.create(new TranslatableContents("additionaladditions.gui.pocket_jukebox.tooltip", null, new String[]{})).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
         } else {
-            Item discItem = BuiltInRegistries.ITEM.get(new ResourceLocation(disc));
+            Item discItem = BuiltInRegistries.ITEM.get(ResourceLocation.parse(disc));
             String description = discItem.getDescriptionId() + ".desc";
             tooltip.add(MutableComponent.create(new TranslatableContents(description, null, new String[]{})));
         }

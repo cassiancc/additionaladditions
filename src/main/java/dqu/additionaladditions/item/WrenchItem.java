@@ -6,6 +6,7 @@ import dqu.additionaladditions.config.ConfigValues;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -42,13 +43,9 @@ public class WrenchItem extends Item {
 
             player.ifPresentOrElse((pl) -> {
                 if (!pl.isCreative()) {
-                    stack.hurtAndBreak(1, pl, (PlayerEntity -> pl.broadcastBreakEvent(hand.get())));
+                    stack.hurtAndBreak(1, pl, pl.getEquipmentSlotForItem (stack));
                 }
-            }, () -> {
-                if (stack.hurt(1, world.random, null)) {
-                    stack.shrink(1);
-                }
-            });
+            }, () -> stack.hurtAndBreak(1, (ServerLevel) world, null, null));
 
             world.playSound(null, pos, SoundEvents.SPYGLASS_USE, SoundSource.AMBIENT, 2.0F, 1.0F);
 
@@ -82,7 +79,7 @@ public class WrenchItem extends Item {
                     CompoundTag nbt = hopperBlockEntity.saveWithoutMetadata();
                     world.removeBlockEntity(pos);
                     HopperBlockEntity blockEntity = new HopperBlockEntity(pos, newstate);
-                    blockEntity.load(nbt);
+                    blockEntity.loadCustomOnly(nbt);
                     world.setBlockEntity(blockEntity);
                 }
 

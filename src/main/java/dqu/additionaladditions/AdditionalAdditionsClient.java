@@ -27,29 +27,29 @@ public class AdditionalAdditionsClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(AdditionalEntities.GLOW_STICK_ENTITY_ENTITY_TYPE, ThrownItemRenderer::new);
 
-        FabricModelPredicateProviderRegistry.register(AdditionalItems.CROSSBOW_WITH_SPYGLASS, new ResourceLocation("pull"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
+        FabricModelPredicateProviderRegistry.register(AdditionalItems.CROSSBOW_WITH_SPYGLASS, ResourceLocation.fromNamespaceAndPath("pull"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
             if (livingEntity == null) return 0.0F;
             return livingEntity.getUseItem() != itemStack ? 0.0F : (itemStack.getUseDuration() - livingEntity.getUseItemRemainingTicks()) / 20.0F;
         });
 
-        FabricModelPredicateProviderRegistry.register(AdditionalItems.CROSSBOW_WITH_SPYGLASS, new ResourceLocation("pulling"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
+        FabricModelPredicateProviderRegistry.register(AdditionalItems.CROSSBOW_WITH_SPYGLASS, ResourceLocation.fromNamespaceAndPath("pulling"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
             if (livingEntity == null) return 0.0F;
             return livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F;
         });
 
-        FabricModelPredicateProviderRegistry.register(AdditionalItems.CROSSBOW_WITH_SPYGLASS, new ResourceLocation("charged"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
+        FabricModelPredicateProviderRegistry.register(AdditionalItems.CROSSBOW_WITH_SPYGLASS, ResourceLocation.fromNamespaceAndPath("charged"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
             return CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F;
         });
 
-        FabricModelPredicateProviderRegistry.register(AdditionalItems.CROSSBOW_WITH_SPYGLASS, new ResourceLocation("firework"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
+        FabricModelPredicateProviderRegistry.register(AdditionalItems.CROSSBOW_WITH_SPYGLASS, ResourceLocation.fromNamespaceAndPath("firework"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
             return CrossbowItem.containsChargedProjectile(itemStack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
         });
 
-        FabricModelPredicateProviderRegistry.register(AdditionalItems.POCKET_JUKEBOX_ITEM, new ResourceLocation("disc"), ((itemStack, clientWorld, livingEntity, worldSeed) -> {
+        FabricModelPredicateProviderRegistry.register(AdditionalItems.POCKET_JUKEBOX_ITEM, ResourceLocation.fromNamespaceAndPath("disc"), ((itemStack, clientWorld, livingEntity, worldSeed) -> {
             return PocketJukeboxItem.hasDisc(itemStack) ? 1.0F : 0.0F;
         }));
 
-        FabricModelPredicateProviderRegistry.register(AdditionalItems.DEPTH_METER_ITEM, new ResourceLocation("angle"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
+        FabricModelPredicateProviderRegistry.register(AdditionalItems.DEPTH_METER_ITEM, ResourceLocation.fromNamespaceAndPath("angle"), (itemStack, clientWorld, livingEntity, worldSeed) -> {
             if (livingEntity == null) return 0.3125F;
             Level world = livingEntity.level();
             if (world == null) return 0.3125F;

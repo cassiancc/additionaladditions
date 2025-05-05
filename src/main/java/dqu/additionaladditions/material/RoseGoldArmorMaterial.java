@@ -1,5 +1,7 @@
 package dqu.additionaladditions.material;
 
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -8,55 +10,22 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.EnumMap;
 import java.util.Locale;
 
-public class RoseGoldArmorMaterial implements ArmorMaterial {
+public class RoseGoldArmorMaterial {
     private static final int[] BASE_DURABILITY = {264, 384, 360, 312};
     private static final int[] PROTECTION_VALUES = {2, 6, 7, 2};
     public static final String NAME = "rose_gold";
 
-    @Override
-    public int getDurabilityForType(ArmorItem.Type type) {
-        return BASE_DURABILITY[type.getSlot().getIndex()];
-    }
-
-    @Override
-    public int getDefenseForType(ArmorItem.Type type) {
-        return PROTECTION_VALUES[type.getSlot().getIndex()];
-    }
-
-    @Override
-    public SoundEvent getEquipSound() {
-        return SoundEvents.ARMOR_EQUIP_GOLD;
-    }
-
-    @Override
-    public Ingredient getRepairIngredient() {
-        return Ingredient.of(Items.COPPER_INGOT);
-    }
-
-    @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public float getToughness() {
-        return 1.0F;
-    }
-
-    @Override
-    public float getKnockbackResistance() {
-        return 0F;
-    }
-
-    @Override
-    public int getEnchantmentValue() {
-        return 17;
-    }
-
-    @Override
-    public String toString() {
-        return NAME.toUpperCase(Locale.ROOT);
-    }
+    public static final Holder<ArmorMaterial> ROSE_GOLD = ModMaterials.register(
+            NAME,
+            Util.make(new EnumMap<>(ArmorItem.Type.class), enumMap -> {
+                        enumMap.put(ArmorItem.Type.BOOTS, 2);
+                        enumMap.put(ArmorItem.Type.LEGGINGS, 6);
+                        enumMap.put(ArmorItem.Type.CHESTPLATE, 7);
+                        enumMap.put(ArmorItem.Type.HELMET, 2);
+                        enumMap.put(ArmorItem.Type.BODY, 10);
+                    }
+            ), 17, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, 0F, () -> Ingredient.of(Items.COPPER_INGOT));
 }

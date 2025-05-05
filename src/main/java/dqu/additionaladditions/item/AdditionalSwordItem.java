@@ -19,14 +19,14 @@ public class AdditionalSwordItem extends SwordItem {
     private final float attackSpeed;
 
     public AdditionalSwordItem(Tier tier, int i, float f, Properties properties) {
-        super(tier, i, f, properties);
+        super(tier, properties);
         attackSpeed = f;
     }
 
     private void rebuildModifiers() {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID , "Weapon modifier", getDamage(), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID , "Weapon modifier", getAttackSpeed(), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE.value(), new AttributeModifier(BASE_ATTACK_DAMAGE_ID, getDamage(), AttributeModifier.Operation.ADD_VALUE));
+        builder.put(Attributes.ATTACK_SPEED.value(), new AttributeModifier(BASE_ATTACK_SPEED_ID, getAttackSpeed(), AttributeModifier.Operation.ADD_VALUE));
         this.modifiers = builder.build();
     }
 

@@ -27,9 +27,9 @@ public class MysteriousBundleItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
         if (!Config.getBool(ConfigValues.MYSTERIOUS_BUNDLE)) { return InteractionResultHolder.fail(user.getItemInHand(hand)); }
         if (world.isClientSide()) return InteractionResultHolder.success(user.getItemInHand(hand));
-        ResourceLocation lootTableID = new ResourceLocation(AdditionalAdditions.namespace, "mysterious_bundle");
+        ResourceLocation lootTableID = ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "mysterious_bundle");
         LootParams lootParams = (new LootParams.Builder((ServerLevel) world)).create(LootContextParamSets.EMPTY);
-        LootTable lootTable = ((ServerLevel) world).getServer().getLootData().getLootTable(lootTableID);
+        LootTable lootTable = ((ServerLevel) world).getServer().reloadableRegistries().getLootTable(lootTableID);
         List<ItemStack> stackList = lootTable.getRandomItems(lootParams);
 
         for (ItemStack stack : stackList) {

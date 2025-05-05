@@ -18,11 +18,11 @@ public class AdditionalSmithingTemplate extends SmithingTemplateItem {
     }
 
     public static SmithingTemplateItem create(String id, List<ResourceLocation> baseSlotEmptyIcons, List<ResourceLocation> additionalSlotEmptyIcons) {
-        var appliesTo = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(AdditionalAdditions.namespace, "smithing_template."+id+".applies_to"))).withStyle(DESCRIPTION_FORMAT);
-        var upgradeDescription = Component.translatable(Util.makeDescriptionId("upgrade", new ResourceLocation(AdditionalAdditions.namespace, id))).withStyle(TITLE_FORMAT);
-        var ingredients = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(AdditionalAdditions.namespace, "smithing_template."+id+".ingredients"))).withStyle(DESCRIPTION_FORMAT);
-        var baseSlotDescription = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(AdditionalAdditions.namespace, "smithing_template."+id+".base_slot_description")));
-        var additionsSlotDescription = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(AdditionalAdditions.namespace, "smithing_template."+id+".additions_slot_description")));
+        var appliesTo = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "smithing_template."+id+".applies_to"))).withStyle(DESCRIPTION_FORMAT);
+        var upgradeDescription = Component.translatable(Util.makeDescriptionId("upgrade", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, id))).withStyle(TITLE_FORMAT);
+        var ingredients = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "smithing_template."+id+".ingredients"))).withStyle(DESCRIPTION_FORMAT);
+        var baseSlotDescription = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "smithing_template."+id+".base_slot_description")));
+        var additionsSlotDescription = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "smithing_template."+id+".additions_slot_description")));
 
         return new AdditionalSmithingTemplate(
                 appliesTo,
@@ -50,24 +50,24 @@ public class AdditionalSmithingTemplate extends SmithingTemplateItem {
     }
 
     public enum SmithingIcon {
-        HELMET(new ResourceLocation("item/empty_armor_slot_helmet")),
-        CHESTPLATE(new ResourceLocation("item/empty_armor_slot_chestplate")),
-        LEGGINGS(new ResourceLocation("item/empty_armor_slot_leggings")),
-        BOOTS(new ResourceLocation("item/empty_armor_slot_boots")),
-        HOE(new ResourceLocation("item/empty_slot_hoe")),
-        AXE(new ResourceLocation("item/empty_slot_axe")),
-        SWORD(new ResourceLocation("item/empty_slot_sword")),
-        SHOVEL(new ResourceLocation("item/empty_slot_shovel")),
-        PICKAXE(new ResourceLocation("item/empty_slot_pickaxe")),
-        INGOT(new ResourceLocation("item/empty_slot_ingot")),
-        REDSTONE_DUST(new ResourceLocation("item/empty_slot_redstone_dust")),
-        QUARTZ(new ResourceLocation("item/empty_slot_quartz")),
-        EMERALD(new ResourceLocation("item/empty_slot_emerald")),
-        DIAMOND(new ResourceLocation("item/empty_slot_diamond")),
-        LAPIS_LAZULI(new ResourceLocation("item/empty_slot_lapis_lazuli")),
-        AMETHYST_SHARD(new ResourceLocation("item/empty_slot_amethyst_shard")),
-        RING(new ResourceLocation(AdditionalAdditions.namespace, "item/empty_slot_ring")),
-        ALLOY(new ResourceLocation(AdditionalAdditions.namespace, "item/empty_slot_alloy"));
+        HELMET(ResourceLocation.parse("item/empty_armor_slot_helmet")),
+        CHESTPLATE(ResourceLocation.parse("item/empty_armor_slot_chestplate")),
+        LEGGINGS(ResourceLocation.parse("item/empty_armor_slot_leggings")),
+        BOOTS(ResourceLocation.parse("item/empty_armor_slot_boots")),
+        HOE(ResourceLocation.parse("item/empty_slot_hoe")),
+        AXE(ResourceLocation.parse("item/empty_slot_axe")),
+        SWORD(ResourceLocation.parse("item/empty_slot_sword")),
+        SHOVEL(ResourceLocation.parse("item/empty_slot_shovel")),
+        PICKAXE(ResourceLocation.parse("item/empty_slot_pickaxe")),
+        INGOT(ResourceLocation.parse("item/empty_slot_ingot")),
+        REDSTONE_DUST(ResourceLocation.parse("item/empty_slot_redstone_dust")),
+        QUARTZ(ResourceLocation.parse("item/empty_slot_quartz")),
+        EMERALD(ResourceLocation.parse("item/empty_slot_emerald")),
+        DIAMOND(ResourceLocation.parse("item/empty_slot_diamond")),
+        LAPIS_LAZULI(ResourceLocation.parse("item/empty_slot_lapis_lazuli")),
+        AMETHYST_SHARD(ResourceLocation.parse("item/empty_slot_amethyst_shard")),
+        RING(ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "item/empty_slot_ring")),
+        ALLOY(ResourceLocation.fromNamespaceAndPath(AdditionalAdditions.namespace, "item/empty_slot_alloy"));
 
         final ResourceLocation resourceLocation;
 

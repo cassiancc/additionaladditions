@@ -2,16 +2,16 @@ package dqu.additionaladditions.misc;
 
 import dqu.additionaladditions.config.Config;
 import dqu.additionaladditions.config.ConfigValues;
-import dqu.additionaladditions.registry.AdditionalItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.JukeboxSong;
 
 @Environment(EnvType.CLIENT)
 public class PocketMusicSoundInstance extends AbstractTickableSoundInstance {
@@ -19,7 +19,7 @@ public class PocketMusicSoundInstance extends AbstractTickableSoundInstance {
     private final ItemStack stack;
     public static PocketMusicSoundInstance instance;
 
-    public PocketMusicSoundInstance(SoundEvent soundEvent, Player playerEntity, ItemStack stack, boolean repeat, float volume) {
+    public PocketMusicSoundInstance(Holder<JukeboxSong> soundEvent, Player playerEntity, ItemStack stack, boolean repeat, float volume) {
         super(soundEvent, SoundSource.RECORDS, RandomSource.create());
         this.playerEntity = playerEntity;
         this.stack = stack;
