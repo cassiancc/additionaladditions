@@ -3,6 +3,7 @@ package dqu.additionaladditions.mixin;
 import dqu.additionaladditions.config.Config;
 import dqu.additionaladditions.config.ConfigValues;
 import dqu.additionaladditions.registry.AdditionalEnchantments;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,7 +30,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @Shadow @Nullable public abstract AttributeInstance getAttribute(Attribute attribute);
-    @Shadow @Final private static UUID SPEED_MODIFIER_SOUL_SPEED_UUID;
+
     @Inject(method = "tryAddSoulSpeed", at = @At("HEAD"))
     private void applySpeedBoost(CallbackInfo ci) {
         if (!Config.getBool(ConfigValues.ENCHANTMENT_SPEED)) {
@@ -47,7 +48,7 @@ public abstract class LivingEntityMixin extends Entity {
                 return;
             }
 
-            AttributeModifier modifier = new AttributeModifier(SPEED_MODIFIER_SOUL_SPEED_UUID, "Soul speed boost", (i*7d)/1000d, AttributeModifier.Operation.ADDITION);
+            AttributeModifier modifier = new AttributeModifier(ResourceLocation.withDefaultNamespace("soul_speed"), (i*7d)/1000d, AttributeModifier.Operation.ADD_VALUE);
             if (entityAttributeInstance.hasModifier(modifier.id())) {
                 return;
             }

@@ -20,7 +20,7 @@ public class PocketMusicSoundInstance extends AbstractTickableSoundInstance {
     public static PocketMusicSoundInstance instance;
 
     public PocketMusicSoundInstance(Holder<JukeboxSong> soundEvent, Player playerEntity, ItemStack stack, boolean repeat, float volume) {
-        super(soundEvent, SoundSource.RECORDS, RandomSource.create());
+        super(soundEvent.value().soundEvent().value(), SoundSource.RECORDS, RandomSource.create());
         this.playerEntity = playerEntity;
         this.stack = stack;
         this.looping = repeat;
@@ -33,7 +33,6 @@ public class PocketMusicSoundInstance extends AbstractTickableSoundInstance {
     @Override
     public void tick() {
         ItemStack cursor = this.playerEntity.containerMenu.getCarried();
-        if (cursor == null) cursor = ItemStack.EMPTY;
         boolean hasDisc = ItemStack.matches(cursor, stack) || this.playerEntity.getInventory().contains(stack);
 
         if (this.playerEntity.isDeadOrDying() || !hasDisc || !Config.getBool(ConfigValues.POCKET_JUKEBOX)) {
