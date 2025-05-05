@@ -2,10 +2,11 @@
   "schemaVersion": 1,
   "id": "additionaladditions",
   "version": "${version}",
-  "name": "Additional Additions",
-  "description": "Additional Additions is a mod that aims to add additional uses for Copper, Amethyst and Glow Ink Sacs as well as other useful additional additions to the game.",
+  "name": "Additional Additions: Lemon Sorbet Edition",
+  "description": "Additional Additions is a mod that aims to add additional uses for Copper, Amethyst and Glow Ink Sacs as well as other useful additional additions to the game. An unofficial 1.21.1 port for Lemon Sorbet.",
   "authors": [
-    "Dqu1J"
+    "Dqu1J",
+    "cassiancc"
   ],
   "contributors": [
     "MorganFreeguy | MF#1861", "adoghr", "Avila27", "aresociety",
@@ -14,8 +15,8 @@
     "foul-fortune-feline", "houlstycraft", "Alyson", "baooduy", "nzuliaf", "Grape reprint"
   ],
   "contact": {
-    "sources": "https://github.com/Dqu1J/additionaladditions",
-    "issues": "https://github.com/Dqu1J/additionaladditions/issues"
+    "sources": "https://github.com/cassiancc/additionaladditions",
+    "issues": "https://github.com/cassiancc/additionaladditions/issues"
   },
   "license": "LGPL-3.0-only",
   "icon": "assets/additionaladditions/icon.png",
@@ -40,12 +41,5 @@
     "minecraft": "=1.21.1",
     "fabric-api": "*",
     "java": ">=17"
-  },
-  "custom": {
-    "modmenu": {
-      "links": {
-        "modmenu.discord": "https://discord.com/invite/g5a7ZA62t3"
-      }
-    }
   }
 }
