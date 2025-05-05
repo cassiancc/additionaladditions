@@ -3,12 +3,18 @@ package dqu.additionaladditions.item;
 import dqu.additionaladditions.config.Config;
 import dqu.additionaladditions.config.ConfigValues;
 import dqu.additionaladditions.misc.PocketMusicSoundInstance;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
 
 import java.util.List;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentUtils;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
@@ -92,12 +98,15 @@ public class PocketJukeboxItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag) {
         ItemStack disc = nbtGetDisc(stack);
-//        if (disc == null) {
-//            tooltip.add(MutableComponent.create(new TranslatableContents("additionaladditions.gui.pocket_jukebox.tooltip", null, new String[]{})).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-//        } else {
-//            Item discItem = BuiltInRegistries.ITEM.get(ResourceLocation.parse(disc));
-//            String description = discItem.getDescriptionId() + ".desc";
-//            tooltip.add(MutableComponent.create(new TranslatableContents(description, null, new String[]{})));
-//        }
+        if (disc != null && disc.has(DataComponents.JUKEBOX_PLAYABLE)) {
+            JukeboxPlayable jukeboxPlayable = disc.get(DataComponents.JUKEBOX_PLAYABLE);
+            jukeboxPlayable.song().unwrap(tooltipContext.registries()).ifPresent(holder -> {
+                MutableComponent mutableComponent = holder.value().description().copy();
+                ComponentUtils.mergeStyles(mutableComponent, Style.EMPTY.withColor(ChatFormatting.GRAY));
+                tooltip.add(mutableComponent);
+            });
+        } else {
+            tooltip.add(Component.translatable("additionaladditions.gui.pocket_jukebox.tooltip").withStyle(ChatFormatting.GRAY));
+        }
     }
 }
