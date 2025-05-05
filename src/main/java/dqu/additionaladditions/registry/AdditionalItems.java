@@ -106,12 +106,6 @@ public class AdditionalItems {
                 .when(LootItemRandomChanceCondition.randomChance(0.5f))
                 .add(LootItem.lootTableItem(Items.SPYGLASS))
         );
-        LootHandler.register(List.of(EntityType.ZOMBIE.getDefaultLootTable(), EntityType.CREEPER.getDefaultLootTable()), () -> Config.getBool(ConfigValues.CHICKEN_NUGGET), LootPool.lootPool()
-                .setRolls(ConstantValue.exactly(1))
-                .when(LootItemKilledByPlayerCondition.killedByPlayer())
-                .when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(Minecraft.getInstance().level.registryAccess(), 0.025f, 0.01f))
-                .add(LootItem.lootTableItem(CHICKEN_NUGGET))
-        );
         LootHandler.register(BuiltInLootTables.PIGLIN_BARTERING, () -> Config.getBool(ConfigValues.GILDED_NETHERITE, "enabled"), LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
                 .when(LootItemRandomChanceCondition.randomChance(0.015f))

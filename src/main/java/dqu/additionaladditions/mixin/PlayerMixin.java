@@ -9,6 +9,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -28,7 +29,7 @@ public abstract class PlayerMixin extends LivingEntity {
     }
 
     @Inject(method = "eat", at = @At("HEAD"))
-    protected void injectInEatFoodMethod(Level world, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
+    protected void injectInEatFoodMethod(Level level, ItemStack stack, FoodProperties foodProperties, CallbackInfoReturnable<ItemStack> cir) {
         if(stack.getItem().equals(Items.GLOW_BERRIES) && Config.getBool(ConfigValues.GLOW_BERRY_GLOW, "enabled")) {
             Integer duration = Config.get(ConfigValues.GLOW_BERRY_GLOW, "duration");
             if (duration == null) return;
