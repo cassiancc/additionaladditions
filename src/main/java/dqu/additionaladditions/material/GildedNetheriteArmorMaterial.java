@@ -13,7 +13,7 @@ import java.util.EnumMap;
 public class GildedNetheriteArmorMaterial {
 
 
-    private static final int[] BASE_DURABILITY = {481, 555, 592, 407};
+    public static final int[] BASE_DURABILITY = {481, 555, 592, 407};
     private static final int[] PROTECTION_VALUES = {3, 6, 8, 3};
     public static final String NAME = "gilded_netherite";
 

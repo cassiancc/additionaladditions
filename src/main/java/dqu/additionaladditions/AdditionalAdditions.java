@@ -1,6 +1,5 @@
 package dqu.additionaladditions;
 
-import dev.lambdaurora.lambdynlights.api.DynamicLightHandlers;
 import dqu.additionaladditions.behaviour.BehaviourManager;
 import dqu.additionaladditions.config.Config;
 import dqu.additionaladditions.misc.CreativeAdder;
@@ -10,7 +9,6 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
@@ -42,10 +40,6 @@ public class AdditionalAdditions implements ModInitializer {
         LootTableEvents.MODIFY.register(LootHandler::handle);
 
         LootHandler.postInit();
-
-        if (FabricLoader.getInstance().isModLoaded("lambdynlights")) {
-            DynamicLightHandlers.registerDynamicLightHandler(AdditionalEntities.GLOW_STICK_ENTITY_ENTITY_TYPE, entity -> 12);
-        }
     }
 
     public void addItemsToCreative() {

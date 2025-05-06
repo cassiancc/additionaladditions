@@ -14,7 +14,7 @@ import java.util.EnumMap;
 import java.util.Locale;
 
 public class RoseGoldArmorMaterial {
-    private static final int[] BASE_DURABILITY = {264, 384, 360, 312};
+    public static final int[] BASE_DURABILITY = {264, 384, 360, 312};
     private static final int[] PROTECTION_VALUES = {2, 6, 7, 2};
     public static final String NAME = "rose_gold";
 

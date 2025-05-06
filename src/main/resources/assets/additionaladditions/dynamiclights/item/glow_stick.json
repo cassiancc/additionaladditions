@@ -1,5 +1,6 @@
 {
-  "item": "additionaladditions:glow_stick",
-  "luminance": 12,
-  "water_sensitive": false
+  "match": {
+    "items": "additionaladditions:glow_stick"
+  },
+  "luminance": 12
 }
