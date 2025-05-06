@@ -1,5 +1,5 @@
 {
-  "exclusive_set": "#minecraft:exclusive_set/boots",
+  "exclusive_set": "#additionaladditions:exclusive_set/speed",
   "anvil_cost": 4,
   "description": {
 	"translate": "enchantment.additionaladditions.speed"
