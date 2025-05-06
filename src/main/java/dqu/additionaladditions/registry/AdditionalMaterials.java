@@ -23,10 +23,10 @@ import java.util.List;
 
 public class AdditionalMaterials {
     public static final Holder<ArmorMaterial> ROSE_GOLD_ARMOR_MATERIAL = RoseGoldArmorMaterial.ROSE_GOLD;
-    public static final Item ROSE_GOLD_HELMET = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties());
-    public static final Item ROSE_GOLD_CHESTPLATE = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties());
-    public static final Item ROSE_GOLD_LEGGINGS = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties());
-    public static final Item ROSE_GOLD_BOOTS = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties());
+    public static final Item ROSE_GOLD_HELMET = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties().durability(RoseGoldArmorMaterial.BASE_DURABILITY[0]));
+    public static final Item ROSE_GOLD_CHESTPLATE = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(RoseGoldArmorMaterial.BASE_DURABILITY[1]));
+    public static final Item ROSE_GOLD_LEGGINGS = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(RoseGoldArmorMaterial.BASE_DURABILITY[2]));
+    public static final Item ROSE_GOLD_BOOTS = new ArmorItem(ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties().durability(RoseGoldArmorMaterial.BASE_DURABILITY[3]));
     public static final Item ROSE_GOLD_SWORD = new SwordItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties().attributes(SwordItem.createAttributes(RoseGoldToolMaterial.MATERIAL, 4, -2.4f)));
     public static final Item ROSE_GOLD_PICKAXE = new PickaxeItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties().attributes(PickaxeItem.createAttributes(RoseGoldToolMaterial.MATERIAL, 1, -2.8f)));
     public static final Item ROSE_GOLD_AXE = new AxeItem(RoseGoldToolMaterial.MATERIAL, new Item.Properties().attributes(AxeItem.createAttributes(RoseGoldToolMaterial.MATERIAL, 6, -3.1f)));
@@ -35,10 +35,10 @@ public class AdditionalMaterials {
     public static final Item ROSE_GOLD_UPGRADE = AdditionalSmithingTemplate.create("rose_gold_upgrade", AdditionalSmithingTemplate.iconsEquipment(), List.of(AdditionalSmithingTemplate.SmithingIcon.ALLOY.location()));
 
     public static final Holder<ArmorMaterial> GILDED_NETHERITE_ARMOR_MATERIAL = GildedNetheriteArmorMaterial.GILDED_NETHERITE;
-    public static final Item GILDED_NETHERITE_HELMET = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties().fireResistant());
-    public static final Item GILDED_NETHERITE_CHESTPLATE = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant());
-    public static final Item GILDED_NETHERITE_LEGGINGS = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant());
-    public static final Item GILDED_NETHERITE_BOOTS = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant());
+    public static final Item GILDED_NETHERITE_HELMET = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties().durability(GildedNetheriteArmorMaterial.BASE_DURABILITY[0]).fireResistant());
+    public static final Item GILDED_NETHERITE_CHESTPLATE = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(GildedNetheriteArmorMaterial.BASE_DURABILITY[1]).fireResistant());
+    public static final Item GILDED_NETHERITE_LEGGINGS = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(GildedNetheriteArmorMaterial.BASE_DURABILITY[2]).fireResistant());
+    public static final Item GILDED_NETHERITE_BOOTS = new ArmorItem(GILDED_NETHERITE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties().durability(GildedNetheriteArmorMaterial.BASE_DURABILITY[3]).fireResistant());
     public static final Item GILDED_NETHERITE_SWORD = new SwordItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant().attributes(SwordItem.createAttributes(GildedNetheriteToolMaterial.MATERIAL, 5, -2.4f)));
     public static final Item GILDED_NETHERITE_PICKAXE = new PickaxeItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant().attributes(PickaxeItem.createAttributes(GildedNetheriteToolMaterial.MATERIAL, 3, -2.8f)));
     public static final Item GILDED_NETHERITE_AXE = new AxeItem(GildedNetheriteToolMaterial.MATERIAL, new Item.Properties().fireResistant().attributes(AxeItem.createAttributes(GildedNetheriteToolMaterial.MATERIAL, 7, -3.1f)));
